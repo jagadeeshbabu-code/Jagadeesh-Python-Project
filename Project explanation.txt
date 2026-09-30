@@ -1,0 +1,26 @@
+Project explanation
+This project is a Django-based restaurant website that helps customers browse food items, add them to a cart, book a table, and submit feedback. It is a complete web app built for restaurant management and online ordering.
+
+Features
+Home page with restaurant branding and hero section
+Menu page showing food items by category
+Add-to-cart functionality
+User login and signup
+Booking form for table reservation
+Feedback form for customer reviews
+Admin-ready data models for menu, bookings, and feedback
+Technologies used
+Python
+Django
+HTML
+CSS
+Bootstrap
+JavaScript
+SQLite
+Project structure
+Base_App: main application logic
+Template: all front-end pages
+Static: styling, images, and JS
+Resturant_Project: project settings and routing
+Simple summary
+“This is a restaurant web application developed in Django to display food items, allow online cart usage, reservation bookings, and customer feedback management.”
