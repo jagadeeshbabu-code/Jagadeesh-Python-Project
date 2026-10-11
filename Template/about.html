@@ -10,32 +10,26 @@
   <!-- about section -->
 
   <section class="about_section layout_padding">
-    <div class="container  ">
-
-      <div class="row">
-        <div class="col-md-6 ">
+    <div class="container">
+      <div class="row about-row">
+        <div class="col-md-6 about-visual">
           <div class="img-box">
-            <img src="{% static 'images/about-img.png' %} " alt="">
+            <img src="{% static 'images/about-img.png' %}" alt="A freshly prepared burger with colorful ingredients" loading="lazy">
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 about-copy">
           <div class="detail-box">
             <div class="heading_container">
-              <h2>
-                We Are Feane
-              </h2>
+              <span class="eyebrow">A LITTLE ABOUT US</span>
+              <h2>Good food is<br><em>better together.</em></h2>
             </div>
-           
-              
-              <div>
-                <p>
-                {% for i in data %}
-                {{ i.Description|safe }}
-                {% endfor %}
-              </p>
-             </div>
-             
-           
+            <div class="about-description">
+              {% for i in data %}<p>{{ i.Description }}</p>{% empty %}<p>We bring people together over fresh, comforting food and warm hospitality. Come by for a relaxed meal and find something you love.</p>{% endfor %}
+            </div>
+            <div class="about-actions">
+              <a href="{% url 'Menu' %}" class="about-primary">Explore the menu <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+              <a href="{% url 'Book_Table' %}" class="about-secondary">Book a table</a>
+            </div>
           </div>
         </div>
       </div>

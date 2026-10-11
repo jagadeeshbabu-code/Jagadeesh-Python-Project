@@ -4,92 +4,20 @@
 {% load static %}
 
 {% block slider %}
-
-    <!-- slider section -->
-    <section class="slider_section ">
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Jagadeesh Kitchen
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    {% comment %} <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
-                      </a>
-                    </div> {% endcomment %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% comment "" %}
-          <div class="carousel-item ">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Jagadeesh Kitchen
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Jagadeesh Kitchen
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endcomment %}
-        </div>
-        <div class="container">
-          <ol class="carousel-indicators">
-            <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-            {% comment "" %}
-            <li data-target="#customCarousel1" data-slide-to="1"></li>
-            <li data-target="#customCarousel1" data-slide-to="2"></li>
-            {% endcomment %}
-          </ol>
-        </div>
+  <section class="home-hero" aria-labelledby="hero-title">
+    <div class="container home-hero-content">
+      <span class="hero-kicker"><span></span> FRESH FROM OUR KITCHEN</span>
+      <h1 id="hero-title">Good food.<br><em>Good mood.</em></h1>
+      <p>Comfort food made fresh, with generous flavor in every bite. Find your new favorite at Jagadeesh Kitchen.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="{% url 'Menu' %}">Explore the menu <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        <a class="hero-secondary" href="{% url 'Book_Table' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Book a table</a>
       </div>
-
-    </section>
-    <!-- end slider section -->
-    
-    {% endblock slider %}
+      <div class="hero-promise"><span><i class="fa fa-check-circle" aria-hidden="true"></i> Freshly prepared</span><span><i class="fa fa-heart" aria-hidden="true"></i> Made with care</span></div>
+    </div>
+    <a class="hero-scroll" href="#our-menu">Discover what’s cooking <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+  </section>
+{% endblock slider %}
 
 {% block main %}
 
@@ -112,7 +40,7 @@
                 <h6>
                   <span>20%</span> Off
                 </h6>
-                <a href="">
+                <a href="{% url 'Menu' %}">
                   Order Now <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                     <g>
                       <g>
@@ -181,7 +109,7 @@
                 <h6>
                   <span>15%</span> Off
                 </h6>
-                <a href="">
+                <a href="{% url 'Menu' %}">
                   Order Now <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                     <g>
                       <g>
@@ -247,40 +175,40 @@
 
   <!-- food section -->
 
-  <section class="food_section layout_padding-bottom">
+  <section id="our-menu" class="food_section home-menu-section layout_padding-bottom">
     <div class="container">
       <div class="heading_container heading_center">
-        <h2>
-          Our Menu
-        </h2>
+        <span class="eyebrow">MADE FRESH, SERVED WITH LOVE</span>
+        <h2>Our Menu</h2>
       </div>
 
-      <ul class="filters_menu">
-        <li class="active" data-filter="*">All</li>
+      <div class="menu-tools"><label class="menu-search"><i class="fa fa-search" aria-hidden="true"></i><input id="menu-search" type="search" placeholder="Search dishes..." aria-label="Search menu"></label><span id="menu-result-count" aria-live="polite"></span></div>
+
+      <nav class="filters_menu" aria-label="Filter dishes by category">
+        <a href="{% url 'Home' %}#our-menu" class="{% if not selected_category %}active{% endif %}">All <span>{{ total_items }}</span></a>
         {% for i in list %}
-        <li data-filter=".{{i.Category_name}}">{{i.Category_name}}</li>
+        <a href="?category={{i.id}}#our-menu" class="{% if selected_category.id == i.id %}active{% endif %}">{{i.Category_name}} <span>{{ i.item_count }}</span></a>
         {% endfor %}
-      </ul>
+      </nav>
 
       <div class="filters-content">
-        <div class="row grid">
+        <div class="menu-grid">
           {% for j in items %}
-          <div class="col-sm-6 col-lg-4 all {{j.Category}}">
+          <article class="menu-card" data-category="{{j.Category_id}}" data-name="{{j.Item_name|lower}}" data-description="{{j.Item_name|lower}} {{j.description|lower}}">
             <div class="box">
               <div>
                 <div class="img-box">
-                  <img src="/media/{{j.Image}} " alt="{{j.Image}}">
+                  <a class="menu-card-image-link" href="{% url 'Item_Detail' j.id %}" aria-label="View {{j.Item_name}} details"><img src="{{j.Image.url}}" alt="{{j.Item_name}}" loading="lazy"></a>
                 </div>
                 <div class="detail-box">
-                  <h5>
-                    {{j.Item_name}}
-                  </h5>
+                  <h5><a class="menu-card-title" href="{% url 'Item_Detail' j.id %}">{{j.Item_name}}</a></h5>
                   <p>
                     {{j.description}}
                   </p>
+                  <a class="menu-card-details" href="{% url 'Item_Detail' j.id %}">View dish details <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                   <div class="options">
                     <h6>
-                      ${{j.Price}}
+                      ₹{{j.Price}}
                     </h6>
                     <button class="btn btn-success add-to-cart" data-item-id="{{j.id}}" data-item-name="{{j.Item_name}}" data-item-price="{{j.Price}}">
                       Add to Cart
@@ -289,40 +217,37 @@
                 </div>
               </div>
             </div>
-          </div>
+          </article>
           {% endfor %}
         </div>
       </div>
-      <div class="btn-box">
-        <a href="">
-          View More
-        </a>
-      </div>
+      <p id="menu-empty" class="menu-empty" hidden>No dishes match your search. Try another name or category.</p>
+      <div class="btn-box"><a href="{% url 'Menu' %}">Browse full menu</a></div>
     </div>
   </section>
 
   <!-- end food section -->
   
   <!-- book section -->
-  <section class="book_section layout_padding">
+  <section class="book_section home-book-section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>
-          Book A Table
-        </h2>
+      <div class="heading_container booking-heading">
+        <span class="eyebrow">WE'LL SAVE YOU A SEAT</span>
+        <h2>Book a table</h2>
+        <p>Choose a date and party size. We'll take care of the rest.</p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
+      <div class="booking-row booking-layout">
+        <div class="booking-column">
+          <div class="form_container booking-form-card">
             <form action="{% url "Book_Table" %}" method='POST'>{% csrf_token %}
               <div>
                 <input type="text" class="form-control" name="user_name" required placeholder="Your Name" />
               </div>
               <div>
-                <input type="text" class="form-control" name="phone_number" required placeholder="Phone Number" />
+                <input type="tel" class="form-control" name="phone_number" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit phone number" />
               </div>
               <div>
-                <input type="email" class="form-control" name="user_email" placeholder="Your Email" />
+                <input type="email" class="form-control" name="user_email" required placeholder="Your Email" />
               </div>
               <div>
                 <select class="form-control nice-select wide" required name="total_person">
@@ -344,20 +269,27 @@
                 </select>
               </div>
               <div>
-                <input type="date" required name="booking_data" class="form-control">
+                <input type="date" required name="booking_data" min="{% now 'Y-m-d' %}" class="form-control">
               </div>
               <div class="btn_box">
-                <button>
-                  Book Now
+                <button type="submit">
+                  Request a table <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </form>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="map_container ">
-            <div id="googleMap"></div>
-          </div>
+        <div class="booking-column">
+          <aside class="booking-aside">
+            <img src="{% static 'images/o2.jpg' %}" alt="Freshly prepared food at Jagadeesh Kitchen" loading="lazy">
+            <div class="booking-aside-content">
+              <span class="booking-aside-kicker">GOOD FOOD, BETTER COMPANY</span>
+              <h3>Make it a<br>moment to share.</h3>
+              <p>Gather your favorite people around the table. We're open every day from 10:00 am to 10:00 pm.</p>
+              <div class="booking-aside-note"><i class="fa fa-clock-o" aria-hidden="true"></i><span><strong>Every day</strong><br>10:00 am to 10:00 pm</span></div>
+              <div class="booking-aside-note booking-address"><i class="fa fa-map-marker" aria-hidden="true"></i><span><strong>Visit us</strong><br>Bose Nagar, Chirala, Bapatla District, Andhra Pradesh</span></div>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
@@ -368,68 +300,33 @@
 
   <section class="client_section layout_padding-bottom">
     <div class="container">
-      <div class="heading_container heading_center psudo_white_primary mb_45">
-        <h2>
-          What Says Our Customers
-        </h2>
+      <div class="heading_container heading_center review-heading">
+        <span class="eyebrow">KIND WORDS, HAPPY HEARTS</span>
+        <h2>What our guests say</h2>
       </div>
-      
-      <div class="carousel-wrap row ">
-        <div class="owl-carousel client_owl-carousel">
-          {% for k in review %}
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <p>
-                  {{k.Description}}
-                </p>
-                <h6>
-                  {{k.User_name}}
-                </h6>
-                <p>
-                  Rating : {{k.Rating}}/5
-                </p>
-              </div>
-              <div class="img-box">
-                <img src="/media/{{k.Image}}" alt="{{k.Image}}" class="box-img">
-              </div>
-            </div>
+
+      <div class="review-grid">
+        {% for k in review %}
+        <article class="review-card">
+          <div class="review-stars" aria-label="Rated {{k.Rating}} out of 5 stars">
+            {% for star in "12345" %}
+              {% if forloop.counter <= k.Rating %}<span aria-hidden="true">★</span>{% else %}<span class="empty-star" aria-hidden="true">★</span>{% endif %}
+            {% endfor %}
+            <span class="review-rating">{{k.Rating}}/5</span>
           </div>
-          {% endfor %}
-        </div>
+          <blockquote>{{k.Description}}</blockquote>
+          <div class="review-person">
+            {% if k.Image %}<img src="{{k.Image.url}}" alt="Photo shared by {{k.User_name}}" loading="lazy">{% else %}<span class="review-avatar" aria-hidden="true">{{k.User_name|first|upper}}</span>{% endif %}
+            <div><strong>{{k.User_name}}</strong><span>Guest</span></div>
+          </div>
+        </article>
+        {% empty %}
+        <p class="reviews-empty">Our guest reviews will appear here soon.</p>
+        {% endfor %}
       </div>
-      
     </div>
   </section>
 
   <!-- end client section -->
 
-  <script>
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', function() {
-        const itemId = this.getAttribute('data-item-id');
-        const itemName = this.getAttribute('data-item-name');
-        const itemPrice = this.getAttribute('data-item-price');
-  
-        fetch('/add-to-cart/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFTOKEN': '{{ csrf_token }}'
-          },
-          body: `item_id=${itemId}`
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.message) {
-            alert(data.message);
-          } else {
-            alert('Failed to add item to cart.');
-          }
-        })
-        .catch(error => console.error('Error:', error));
-      });
-    });
-  </script>
-  
 {% endblock main %}

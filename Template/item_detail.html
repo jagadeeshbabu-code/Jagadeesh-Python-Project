@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block class %}class="sub_page"{% endblock class %}
+{% block menu_status %}active{% endblock menu_status %}
+{% block main %}
+<main class="item-detail-page">
+  <div class="container">
+    <nav class="item-breadcrumb" aria-label="Breadcrumb">
+      <a href="{% url 'Home' %}">Home</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+      <a href="{% url 'Menu' %}">Menu</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+      <span>{{item.Item_name}}</span>
+    </nav>
+
+    <section class="item-detail-card">
+      <div class="item-detail-image"><img src="{{item.Image.url}}" alt="{{item.Item_name}}" fetchpriority="high"></div>
+      <div class="item-detail-copy">
+        <span class="item-category">{{item.Category.Category_name}}</span>
+        <h1>{{item.Item_name}}</h1>
+        <p class="item-detail-description">{{item.description}}</p>
+        <div class="item-detail-price">₹{{item.Price}}</div>
+        <button class="add-to-cart item-add-button" data-item-id="{{item.id}}" data-item-name="{{item.Item_name}}" data-item-price="{{item.Price}}" type="button"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Add to cart</button>
+        <p class="item-detail-note"><i class="fa fa-heart" aria-hidden="true"></i> Freshly prepared when you order.</p>
+        <a class="item-back-link" href="{% url 'Menu' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to all dishes</a>
+      </div>
+    </section>
+
+    {% if related_items %}
+    <section class="related-dishes">
+      <div class="related-heading"><div><span class="eyebrow">MORE TO LOVE</span><h2>From {{item.Category.Category_name}}</h2></div><a href="{% url 'Menu' %}">See full menu <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
+      <div class="related-grid">
+        {% for dish in related_items %}
+        <a class="related-card" href="{% url 'Item_Detail' dish.id %}">
+          <img src="{{dish.Image.url}}" alt="{{dish.Item_name}}" loading="lazy">
+          <span><strong>{{dish.Item_name}}</strong><small>₹{{dish.Price}}</small></span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</main>
+{% endblock main %}

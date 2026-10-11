@@ -14,13 +14,11 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-  <title> Feane </title>
+  <title>Jagadeesh Kitchen | Fresh food, made with love</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
 
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   <!-- font awesome style -->
@@ -30,6 +28,7 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/app.css' %}?v=15" rel="stylesheet" />
 
 </head>
 
@@ -45,9 +44,8 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="{% url "Home" %}">
-            <span>
-              Jagadeesh Kitchen
-            </span>
+            <i class="fa fa-cutlery brand-mark" aria-hidden="true"></i>
+            <span class="brand-lockup"><span class="brand-name">Jagadeesh Kitchen</span><small>FRESH · LOCAL · DELICIOUS</small></span>
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,19 +71,15 @@
               </li>
             </ul>
             <div class="user_option">
-              <div class="user_option">
-                {% if user.is_authenticated %}
-                  <span style="background-color: #f8c6c6; color: #000; padding: 5px 10px; border-radius: 5px; font-weight: bold;">
-                    {{ user.username }}
-                  </span>
-                  <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
-                  <button id="cart-button" class="btn btn-primary">
-                    <i class="fa fa-shopping-cart"></i> Cart
-                  </button>
-                {% else %}
-                  <a href="{% url 'login' %}" class="btn order_online">Login</a>
-                {% endif %}
-              </div>
+              {% if user.is_authenticated %}
+                <span class="nav-user">Hi, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="nav-login">Sign out</a>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav-login">Sign in</a>
+              {% endif %}
+              <button id="cart-button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#cart-modal" aria-label="Open shopping cart">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i> Cart <span id="cart-count" class="cart-count">0</span>
+              </button>
             </div>
           </div>
         </nav>
@@ -104,11 +98,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <ul id="cart-items-list">
+            <ul id="cart-items-list" class="cart-items-list">
               <!-- Cart items will be dynamically loaded here -->
             </ul>
           </div>
           <div class="modal-footer">
+            <strong id="cart-total" class="mr-auto">Total: $0</strong>
+            <button id="clear-cart" type="button" class="btn btn-outline-secondary">Clear cart</button>
+            <a href="{% url 'Menu' %}" class="btn btn-primary">Continue ordering</a>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -122,82 +119,29 @@
 
   <!-- footer section -->
   <footer class="footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 footer-col">
-          <div class="footer_contact">
-            <h4>
-              Contact Us
-            </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Location
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call +01 1234567890
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  demo@gmail.com
-                </span>
-              </a>
-            </div>
-          </div>
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="{% url 'Home' %}" class="footer-logo"><i class="fa fa-cutlery" aria-hidden="true"></i> Jagadeesh Kitchen</a>
+          <p>Freshly prepared comfort food, made with care and served with a smile.</p>
+          <a class="footer-cta" href="{% url 'Menu' %}">Explore our menu <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="col-md-4 footer-col">
-          <div class="footer_detail">
-            <a href="" class="footer-logo">
-              Feane
-            </a>
-            <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-            </p>
-            <div class="footer_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-pinterest" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <a href="{% url 'Home' %}">Home</a>
+          <a href="{% url 'Menu' %}">Our menu</a>
+          <a href="{% url 'About' %}">About us</a>
         </div>
-        <div class="col-md-4 footer-col">
-          <h4>
-            Opening Hours
-          </h4>
-          <p>
-            Everyday
-          </p>
-          <p>
-            10.00 Am -10.00 Pm
-          </p>
+        <div class="footer-links">
+          <h4>Visit us</h4>
+          <span>Bose Nagar, Chirala,<br>Bapatla District, Andhra Pradesh</span>
+          <a href="{% url 'Book_Table' %}">Book a table</a>
+          <a href="{% url 'Feedback_Form' %}">Share feedback</a>
+          <span class="footer-hours-title">Opening hours</span>
+          <span>Every day · 10:00 am – 10:00 pm</span>
         </div>
       </div>
-      <div class="footer-info">
-        <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br><br>
-          &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-        </p>
-      </div>
+      <div class="footer-bottom"><span>© <span id="displayYear"></span> Jagadeesh Kitchen</span><span>Made fresh, served with love.</span></div>
     </div>
   </footer>
   <!-- footer section -->
@@ -209,37 +153,10 @@
   </script>
   <!-- bootstrap js -->
   <script src="{% static 'js/bootstrap.js' %} "></script>
-  <!-- owl slider -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-  </script>
-  <!-- isotope js -->
-  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
   <!-- nice select -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
   <!-- custom js -->
-  <script src="{% static 'js/custom.js' %} "></script>
-    <!-- JavaScript for Cart Button -->
-    <script>
-      document.getElementById('cart-button').addEventListener('click', function() {
-        fetch('/get-cart-items/')
-          .then(response => response.json())
-          .then(data => {
-            const cartList = document.getElementById('cart-items-list');
-            cartList.innerHTML = '';
-            if (data.items) {
-              data.items.forEach(item => {
-                cartList.innerHTML += `
-                  <li>${item.name} - ${item.quantity} x $${item.price} = $${item.total}</li>
-                `;
-              });
-            } else {
-              cartList.innerHTML = '<li>Your cart is empty.</li>';
-            }
-            $('#cart-modal').modal('show');
-          })
-          .catch(error => console.error('Error fetching cart items:', error));
-      });
-    </script>
+  <script src="{% static 'js/custom.js' %}?v=2"></script>
 </body>
 
 </html>

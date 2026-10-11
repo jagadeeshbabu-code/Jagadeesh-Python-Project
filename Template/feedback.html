@@ -1,65 +1,48 @@
 {% extends "base.html" %}
-
 {% load static %}
 {% block class %}class="sub_page"{% endblock class %}
 {% block feedback_status %}active{% endblock feedback_status %}
 {% block main %}
-
-  <!-- start feedback form -->
-  <section class="book_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Feedback Form
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
-            <!-- Display messages here -->
-            {% if messages %}
-              <div class="alert alert-info">
-                {% for message in messages %}
-                  <p>{{ message }}</p>
-                {% endfor %}
-              </div>
-            {% endif %}
-
-            <form action="{% url 'Feedback_Form' %}" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div>
-                <input type="text" class="form-control" name="User_name" required placeholder="Your Name" />
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="Description" rows="3" required placeholder="Describe your experience here"></textarea>
-              </div>
-              <div>
-                <select class="form-control nice-select wide" required name="Rating">
-                  <option value="" disabled selected>
-                    Please Give Us Rating?
-                  </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-              <div>
-                <label for="formFileLg" class="form-label">Upload Image:</label>
-                <input class="form-control form-control-lg" name="Selfie" id="formFileLg" type="file">
-              </div>
-              <div class="btn_box">
-                <button type="submit">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+<section class="feedback-page">
+  <div class="container">
+    <div class="feedback-heading">
+      <span class="eyebrow">YOUR WORDS MAKE US BETTER</span>
+      <h1>How was your visit?</h1>
+      <p>Tell us what you loved and what we can make even better.</p>
+    </div>
+    <div class="feedback-layout">
+      <aside class="feedback-aside">
+        <span class="feedback-mark"><i class="fa fa-heart" aria-hidden="true"></i></span>
+        <span class="feedback-aside-kicker">A NOTE FROM OUR KITCHEN</span>
+        <h2>Every meal has a story.</h2>
+        <p>Your feedback helps our team keep serving food and moments worth coming back for.</p>
+        <div class="feedback-promise"><i class="fa fa-star" aria-hidden="true"></i><span><strong>Made with care</strong><small>Fresh ingredients, warm hospitality.</small></span></div>
+      </aside>
+      <div class="feedback-form-card">
+        {% if messages %}<div class="alert alert-info">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}
+        <h2>Share your experience</h2>
+        <p class="feedback-form-intro">A few words from you mean a lot to us.</p>
+        <form action="{% url 'Feedback_Form' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label class="feedback-label" for="feedback-name">Your name</label>
+          <input id="feedback-name" type="text" class="form-control" name="User_name" required placeholder="e.g. Alex Morgan" />
+          <label class="feedback-label" for="feedback-message">Your review</label>
+          <textarea class="form-control" id="feedback-message" name="Description" rows="4" required placeholder="What did you enjoy about your visit?"></textarea>
+          <label class="feedback-label" for="feedback-rating">How would you rate us?</label>
+          <select id="feedback-rating" class="form-control" required name="Rating">
+            <option value="" disabled selected>Choose a rating</option>
+            <option value="5">★★★★★ — Loved it</option>
+            <option value="4">★★★★☆ — Great</option>
+            <option value="3">★★★☆☆ — Good</option>
+            <option value="2">★★☆☆☆ — Could be better</option>
+            <option value="1">★☆☆☆☆ — Needs improvement</option>
+          </select>
+          <label class="feedback-label" for="feedback-photo">Add a photo <span>(optional)</span></label>
+          <input class="form-control feedback-file" name="Selfie" id="feedback-photo" type="file" accept="image/*">
+          <button class="feedback-submit" type="submit">Send feedback <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </form>
       </div>
     </div>
-  </section>
-  <!-- end feedback form -->
-
+  </div>
+</section>
 {% endblock main %}
