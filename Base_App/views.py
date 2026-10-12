@@ -158,7 +158,7 @@ def HomeView(request):
     if selected_category:
         items = items.filter(Category=selected_category)
     review = Feedback.objects.all().order_by('-id')[:5]
-    return render(request, 'home.html', {
+    return render(request, 'Index.html', {
         'items': items,
         'list': categories,
         'selected_category': selected_category,
